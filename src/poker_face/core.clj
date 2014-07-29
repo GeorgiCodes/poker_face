@@ -1,6 +1,15 @@
-(ns poker-face.core)
+(ns poker-face.core
+  (:require [clojure.math.combinatorics :as combo]))
 
-(defn foo
-  "I don't do a whole lot."
-  [x]
-  (println x "Hello, World!"))
+(defrecord Card [rank suit])
+
+(def ranks #{:two :three :four :five :six :seven :eight :nine :ten :jack :queen :king :ace})
+(def suits #{:spades :clubs :diamonds :hearts})
+(def deck (combo/cartesian-product suits ranks))
+
+
+
+;; testing
+(def single-card (Card. (:three ranks) (:spades suits)))
+(:rank single-card)
+(:three ranks)
